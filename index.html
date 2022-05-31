@@ -7,7 +7,36 @@
     <title>Vite App</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="src/main.js"></script>
+    <button id="increment">+</button>
+    <p id="counter">0</p>
+    <button id="decrement">-</button>
+    <script>
+      const counterElement = document.getElementById("counter")
+      let counterValue = parseInt(counterElement.textContent)
+      const incrementBtn = document.getElementById("increment")
+      const decrementBtn = document.getElementById("decrement")
+
+      function updateTextContent () {
+        counterElement.textContent = counterValue.toString()
+      };
+
+      function increment (num) {
+        return num + 1
+      }
+
+      function decrement (num) {
+        return num - 1
+      }
+
+      incrementBtn.addEventListener("click", () => {
+        counterValue = increment (counterValue)
+        updateTextContent()
+      });
+
+      decrementBtn.addEventListener("click", ()=> {
+        counterValue = decrement(counterValue)
+        updateTextContent()
+      })
+    </script>
   </body>
 </html>
