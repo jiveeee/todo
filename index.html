@@ -11,32 +11,62 @@
     <p id="counter">0</p>
     <button id="decrement">-</button>
     <script>
-      const counterElement = document.getElementById("counter")
-      let counterValue = parseInt(counterElement.textContent)
+
+      // MAIN TASK
+
+      // getElementById
+      // getElementById
+      // getElementById
+      // createClickHandler -> creates handleIncrement
+      // addEventListener
+      // createClickHandler -> creates handleDecrement
+      // addEventListener
+
+
+      //  Click Increment button task
+      
+      // handleIncrement
+      // parseInt
+      // method => increment
+      // toString
+      
+      //  Click Decrement button task
+
+      // handleDecrement
+      // parseInt
+      // method => decrement
+      // toString
+
       const incrementBtn = document.getElementById("increment")
       const decrementBtn = document.getElementById("decrement")
-
-      function updateTextContent () {
-        counterElement.textContent = counterValue.toString()
-      };
-
-      function increment (num) {
+      const counterElement = document.getElementById("counter")
+      
+      
+      function increment(num) {
         return num + 1
       }
 
-      function decrement (num) {
+      function decrement(num) {
         return num - 1
       }
+      
+      function createClickHandler(method) {
+        return function handleClick(ev) {
+          // GET THE VALUE
+          const value = parseInt(counterElement.textContent) // impure
+          // CHANGE THE VALUE
+          const nextValue = method(value) // pure
+          // UPDATE THE CONTENT
+          counterElement.textContent = nextValue.toString() // impure
+        }
+      }
 
-      incrementBtn.addEventListener("click", () => {
-        counterValue = increment (counterValue)
-        updateTextContent()
-      });
+      const handleIncrement = createClickHandler(increment)
+      const handleDecrement = createClickHandler(decrement)
 
-      decrementBtn.addEventListener("click", ()=> {
-        counterValue = decrement(counterValue)
-        updateTextContent()
-      })
+      incrementBtn.addEventListener("click", handleIncrement);
+      
+      decrementBtn.addEventListener("click", handleDecrement)
     </script>
   </body>
 </html>
